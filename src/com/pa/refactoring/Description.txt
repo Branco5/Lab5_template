@@ -1,0 +1,4 @@
+Bad smell data clump resolvido com extract class (Date).
+
+Bad smell Refused Bequest resolvido com Replace Inheritance with Delegation
+(adicionado atributo List<Product>)

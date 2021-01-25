@@ -2,53 +2,43 @@ package com.pa.refactoring.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author patricia.macedo
  */
-public class ShoppingCart extends ArrayList<Product>{
+public class ShoppingCart{
 
     private double total;
-    private int day, year,month,hour, minute;
+    private List<Product> products;
+    private Date date;
     private boolean terminated;
 
     public ShoppingCart() {
-        LocalDateTime d= LocalDateTime.now();
-        day=d.getDayOfMonth();
-        month=d.getMonthValue();
-        year=d.getYear();
-        hour=d.getHour();
-        minute =d.getMinute();
-        terminated=false;;
+        total = 0;
+        products=new ArrayList<>();
+        date = new Date();
+        terminated=false;
     }
-
 
     public double getTotal() {
        total=0;
-        for (Product p : this) {
+        for (Product p : products) {
             total += p.getCost();
         }
         return total;
     }
 
-    public int getDay() {
-        return day;
+    public int size(){
+        return products.size();
     }
 
-    public int getYear() {
-        return year;
+    public void add(Product p){
+        products.add(p);
     }
 
-    public int getMonth() {
-        return month;
-    }
-
-    public int getHour() {
-        return hour;
-    }
-
-    public int getMinute() {
-        return minute;
+    public List<Product> getProducts(){
+        return products;
     }
 
     public boolean isTerminated() {
@@ -56,20 +46,13 @@ public class ShoppingCart extends ArrayList<Product>{
     }
 
     public void terminate(){
-
         terminated=true;
-        LocalDateTime d= LocalDateTime.now();
-        day=d.getDayOfMonth();
-        month=d.getMonthValue();
-        year=d.getYear();
-        hour=d.getHour();
-        minute =d.getMinute();
+        this.date = new Date();
+    }
 
+    public Date getDate(){
+        return date;
     }
 
 
-    public String getDateStr() {
-      String  dateStr= String.format("%02d/%02d/%4d %02d:%02d", day,month,year,hour, minute);
-        return dateStr;
-    }
 }
